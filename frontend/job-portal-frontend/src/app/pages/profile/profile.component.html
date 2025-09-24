@@ -1,0 +1,38 @@
+<section class="container">
+  <div class="card profile">
+    <div class="profile__header">
+      <div>
+        <h2>Your profile</h2>
+        <p>Keep your information up to date to unlock tailored recommendations.</p>
+      </div>
+      <div class="profile__resume" *ngIf="profile?.resumeUrl">
+        <span>Resume uploaded</span>
+        <a [href]="profile?.resumeUrl" target="_blank" rel="noopener">View</a>
+      </div>
+    </div>
+
+    <div class="profile__message" *ngIf="message">{{ message }}</div>
+
+    <form [formGroup]="form" class="profile__form" (ngSubmit)="save()">
+      <label>Professional summary
+        <textarea rows="4" formControlName="bio" placeholder="Highlight your achievements and strengths."></textarea>
+      </label>
+      <label>Core skills
+        <input type="text" formControlName="skills" placeholder="Angular, Spring Boot, Leadership">
+      </label>
+      <label>Experience
+        <input type="text" formControlName="experience" placeholder="8+ years in full-stack engineering">
+      </label>
+      <label>Location
+        <input type="text" formControlName="location" placeholder="Remote / New York">
+      </label>
+      <div class="profile__actions">
+        <button class="button-primary" type="submit" [disabled]="loading">{{ loading ? 'Saving…' : 'Save changes' }}</button>
+        <label class="upload">
+          <input type="file" accept=".pdf,.doc,.docx" (change)="onFileSelected($event)">
+          Upload resume
+        </label>
+      </div>
+    </form>
+  </div>
+</section>

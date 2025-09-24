@@ -1,0 +1,22 @@
+<header class="nav">
+  <div class="container nav__inner">
+    <a routerLink="/" class="nav__brand">JobPortal</a>
+    <nav class="nav__links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Jobs</a>
+      <a routerLink="/favorites" routerLinkActive="active" *ngIf="(user$ | async)?.role === 'JOB_SEEKER'">Favorites</a>
+      <a routerLink="/applications" routerLinkActive="active" *ngIf="(user$ | async)?.role === 'JOB_SEEKER'">Applications</a>
+      <a routerLink="/employer" routerLinkActive="active" *ngIf="(user$ | async)?.role === 'EMPLOYER'">Employer</a>
+      <a routerLink="/admin" routerLinkActive="active" *ngIf="(user$ | async)?.role === 'ADMIN'">Admin</a>
+    </nav>
+    <div class="nav__actions">
+      <ng-container *ngIf="user$ | async as user; else guest">
+        <span class="nav__user">Hi, {{ user.name }}</span>
+        <button class="button-primary" (click)="logout()">Logout</button>
+      </ng-container>
+      <ng-template #guest>
+        <a routerLink="/login" class="nav__link">Login</a>
+        <a routerLink="/register" class="button-primary">Create Account</a>
+      </ng-template>
+    </div>
+  </div>
+</header>

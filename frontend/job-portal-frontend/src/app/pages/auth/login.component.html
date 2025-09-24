@@ -1,0 +1,21 @@
+<section class="auth">
+  <div class="card auth__card">
+    <h2>Welcome back</h2>
+    <p class="auth__subtitle">Sign in to manage your career journey.</p>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth__form">
+      <label>Email
+        <input type="email" formControlName="email" placeholder="you@example.com">
+      </label>
+      <div class="error" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">Valid email required.</div>
+
+      <label>Password
+        <input type="password" formControlName="password" placeholder="•••••••">
+      </label>
+      <div class="error" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">Password required.</div>
+
+      <button class="button-primary" type="submit" [disabled]="loading">{{ loading ? 'Signing in…' : 'Sign in' }}</button>
+      <div class="error" *ngIf="error">{{ error }}</div>
+    </form>
+    <p class="auth__footer">New here? <a routerLink="/register">Create an account</a>.</p>
+  </div>
+</section>

@@ -1,0 +1,78 @@
+<section class="container admin" *ngIf="report">
+  <div class="card admin__stats">
+    <h2>Platform health</h2>
+    <div class="stats">
+      <div>
+        <span class="label">Users</span>
+        <strong>{{ report.totalUsers }}</strong>
+      </div>
+      <div>
+        <span class="label">Jobs</span>
+        <strong>{{ report.totalJobs }}</strong>
+      </div>
+      <div>
+        <span class="label">Applications</span>
+        <strong>{{ report.totalApplications }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="card admin__panel">
+    <h3>Manage users</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <span class="status-pill" [ngClass]="user.active ? 'accepted' : 'rejected'">{{ user.active ? 'Active' : 'Inactive' }}</span>
+          </td>
+          <td class="actions">
+            <button type="button" (click)="toggleUser(user)">{{ user.active ? 'Deactivate' : 'Activate' }}</button>
+            <button type="button" class="danger" (click)="deleteUser(user)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card admin__panel">
+    <h3>Moderate job postings</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Employer</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of jobs">
+          <td>{{ job.title }}</td>
+          <td>{{ job.employer?.name }}</td>
+          <td>
+            <select [value]="job.status" (change)="updateJobStatus(job, $event.target.value)">
+                <option value="DRAFT">Draft</option>
+                <option value="PUBLISHED">Published</option>
+                <option value="ARCHIVED">Archived</option>
+            </select>
+          </td>
+          <td class="actions">
+            <button type="button" class="danger" (click)="deleteJob(job)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

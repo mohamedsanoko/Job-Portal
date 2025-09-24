@@ -1,0 +1,66 @@
+<section class="container employer">
+  <div class="card employer__list">
+    <div class="employer__header">
+      <h2>Your job postings</h2>
+      <button class="button-primary" (click)="create()">Post a role</button>
+    </div>
+    <table class="table" *ngIf="jobs.length; else emptyJobs">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of jobs" (click)="openJob(job)" [class.active]="job === selectedJob">
+          <td>{{ job.title }}</td>
+          <td>
+            <select [value]="job.status" (change)="updateStatus(job, $event.target.value)">
+              <option value="DRAFT">Draft</option>
+              <option value="PUBLISHED">Published</option>
+              <option value="ARCHIVED">Archived</option>
+            </select>
+          </td>
+          <td class="actions">
+            <button type="button" (click)="edit(job); $event.stopPropagation()">Edit</button>
+            <button type="button" (click)="delete(job); $event.stopPropagation()" class="danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #emptyJobs>
+      <p class="empty">No postings yet. Click “Post a role” to publish your first opening.</p>
+    </ng-template>
+  </div>
+
+  <div class="card employer__applications" *ngIf="selectedJob">
+    <h3>Applicants for {{ selectedJob.title }}</h3>
+    <table class="table" *ngIf="applications.length; else noApps">
+      <thead>
+        <tr>
+          <th>Candidate</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let application of applications">
+          <td>
+            {{ application.seeker.name }}
+            <div class="muted">{{ application.seeker.email }}</div>
+          </td>
+          <td><span class="status-pill" [ngClass]="application.status.toLowerCase()">{{ application.status }}</span></td>
+          <td class="actions">
+            <button type="button" (click)="updateApplicationStatus(application, 'IN_REVIEW')">Review</button>
+            <button type="button" (click)="updateApplicationStatus(application, 'ACCEPTED')">Accept</button>
+            <button type="button" class="danger" (click)="updateApplicationStatus(application, 'REJECTED')">Reject</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #noApps>
+      <p class="empty">No applicants yet. Share your posting to attract talent.</p>
+    </ng-template>
+  </div>
+</section>

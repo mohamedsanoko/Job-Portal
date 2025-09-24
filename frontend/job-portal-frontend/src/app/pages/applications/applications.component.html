@@ -1,0 +1,27 @@
+<section class="container">
+  <div class="card">
+    <h2>Your applications</h2>
+    <p>Stay on top of every stage from submission to decision.</p>
+    <table class="table" *ngIf="applications.length; else empty">
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Company</th>
+          <th>Status</th>
+          <th>Applied</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let app of applications">
+          <td>{{ app.job.title }}</td>
+          <td>{{ app.job.employer?.name || 'Confidential' }}</td>
+          <td><span class="status-pill" [ngClass]="statusClass(app.status)">{{ app.status }}</span></td>
+          <td>{{ app.appliedAt | date:'mediumDate' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #empty>
+      <p class="empty">No applications yet. Explore new roles to get started.</p>
+    </ng-template>
+  </div>
+</section>

@@ -1,0 +1,18 @@
+<section class="container">
+  <div class="card">
+    <h2>Saved roles</h2>
+    <p>Keep tabs on the opportunities you love.</p>
+    <div class="favorites" *ngIf="favorites.length; else empty">
+      <article class="favorite" *ngFor="let job of favorites">
+        <div>
+          <h3>{{ job.title }}</h3>
+          <p>{{ job.location }} • {{ job.salary || 'Competitive salary' }}</p>
+        </div>
+        <button type="button" (click)="remove(job)">Remove</button>
+      </article>
+    </div>
+    <ng-template #empty>
+      <p class="empty">No favorites yet. Browse openings and click “Save”.</p>
+    </ng-template>
+  </div>
+</section>

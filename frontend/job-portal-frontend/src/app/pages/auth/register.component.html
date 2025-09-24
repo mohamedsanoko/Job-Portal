@@ -1,0 +1,32 @@
+<section class="auth">
+  <div class="card auth__card">
+    <h2>Create your account</h2>
+    <p class="auth__subtitle">Choose your role to personalize your dashboard experience.</p>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth__form">
+      <label>Full name
+        <input type="text" formControlName="name" placeholder="Jane Doe">
+      </label>
+      <div class="error" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">Name required.</div>
+
+      <label>Email
+        <input type="email" formControlName="email" placeholder="you@example.com">
+      </label>
+      <div class="error" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">Valid email required.</div>
+
+      <label>Password
+        <input type="password" formControlName="password" placeholder="At least 6 characters">
+      </label>
+      <div class="error" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">Min length 6.</div>
+
+      <label>Role
+        <select formControlName="role">
+          <option *ngFor="let role of roles" [value]="role.value">{{ role.label }}</option>
+        </select>
+      </label>
+
+      <button class="button-primary" type="submit" [disabled]="loading">{{ loading ? 'Creating…' : 'Create account' }}</button>
+      <div class="feedback" *ngIf="message">{{ message }}</div>
+    </form>
+    <p class="auth__footer">Already have an account? <a routerLink="/login">Sign in</a>.</p>
+  </div>
+</section>

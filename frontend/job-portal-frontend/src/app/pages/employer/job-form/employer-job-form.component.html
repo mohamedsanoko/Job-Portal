@@ -1,0 +1,30 @@
+<section class="container">
+  <div class="card job-form">
+    <h2>{{ heading }}</h2>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="job-form__grid">
+      <label>Job title
+        <input type="text" formControlName="title">
+      </label>
+      <label>Location
+        <input type="text" formControlName="location">
+      </label>
+      <label>Salary range
+        <input type="text" formControlName="salary">
+      </label>
+      <label>Status
+        <select formControlName="status">
+          <option value="DRAFT">Draft</option>
+          <option value="PUBLISHED">Published</option>
+          <option value="ARCHIVED">Archived</option>
+        </select>
+      </label>
+      <label class="full">Description
+        <textarea rows="6" formControlName="description"></textarea>
+      </label>
+      <label class="full">Requirements
+        <textarea rows="4" formControlName="requirements"></textarea>
+      </label>
+      <button class="button-primary" type="submit">{{ jobId ? 'Update job' : 'Publish job' }}</button>
+    </form>
+  </div>
+</section>

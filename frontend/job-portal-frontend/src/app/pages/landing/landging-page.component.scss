@@ -1,0 +1,132 @@
+.hero {
+  background: radial-gradient(circle at top left, rgba(30, 136, 229, 0.1), transparent);
+  padding: 4rem 0 3rem;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: center;
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #475569;
+      max-width: 520px;
+      line-height: 1.6;
+    }
+  }
+
+  &__form {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+
+    input,
+    select {
+      padding: 0.85rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(15, 23, 42, 0.1);
+      font-size: 1rem;
+    }
+  }
+
+  &__card {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.12);
+
+    h3 {
+      margin-top: 0;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+      color: #475569;
+      line-height: 1.6;
+    }
+  }
+}
+
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.job-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__location {
+    color: #475569;
+    font-weight: 500;
+  }
+
+  &__requirements {
+    background: #f8fafc;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    color: #475569;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.apply {
+  margin-top: -2rem;
+  display: grid;
+  gap: 1rem;
+
+  textarea {
+    border-radius: 0.75rem;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+
+.feedback {
+  padding: 0.75rem 1rem;
+  background: #ecfdf5;
+  color: #047857;
+  border-radius: 0.75rem;
+}
+
+.loading {
+  padding: 2rem;
+  text-align: center;
+  color: #475569;
+}
+
+@media (max-width: 900px) {
+  .hero__content {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__form {
+    grid-template-columns: 1fr;
+  }
+}

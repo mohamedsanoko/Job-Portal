@@ -1,0 +1,33 @@
+# General OS files
+.DS_Store
+Thumbs.db
+
+# IDE directories and project files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Build outputs
+backend/target/
+frontend/job-portal-frontend/dist/
+frontend/job-portal-frontend/.angular/cache/
+
+# Dependency directories
+frontend/job-portal-frontend/node_modules/
+
+# Spring Boot specific
+backend/*.log
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/.factorypath
+
+# Angular environment overrides
+frontend/job-portal-frontend/src/environments/environment.*.local.ts
+frontend/job-portal-frontend/.env*
+
+# Temporary files
+*.swp
+*.swo
